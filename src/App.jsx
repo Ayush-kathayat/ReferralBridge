@@ -6,6 +6,9 @@ import "./App.css";
 import LandingPage from "./pages/landingPage";
 import HomePage from "./pages/homePage";
 
+import SignUP from "./auth/signUp";
+import Login from "./auth/login";
+
 function App() {
   return (
     <>
@@ -13,6 +16,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
           <Route path="/home" element={<HomePage />}></Route>
+          <Route path="/signup" element={<SignUP />}></Route>
+          <Route path="/login" element={<Login />}></Route>
         </Routes>
       </Router>
     </>
