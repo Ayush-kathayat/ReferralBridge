@@ -1,0 +1,122 @@
+.wrapper {
+  top: 0;
+  width: 100%;
+  margin-top: 1%;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  z-index: 100;
+}
+
+.logo-title {
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  font-family: var(--form-font);
+}
+
+/* This targets <a> tags directly within .logo-title, removing the underline */
+.logo-title a {
+  text-decoration: none;
+}
+
+.app-name {
+  font-size: var(--font-size-mammoth);
+  color: var(--accent);
+}
+
+.nav-cta {
+  display: flex;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  margin-right: 1%;
+  text-decoration: none; /* Removes underline */
+}
+
+.nav-btn {
+  margin: 1% 1% 1% 1%;
+  padding: 5%;
+  width: 65%;
+  font-size: var(--font-size-xlarge);
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none; /* This will remove the underline from links */
+}
+
+.log-btn {
+  background-color: var(--primary);
+  transition: all 0.5s ease;
+}
+
+.btn-log,
+.btn-sign {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: var(--font-size-huge);
+  font-weight: 900;
+  cursor: pointer;
+  font-family: var(--secondary-font);
+}
+
+.btn-log {
+  color: var(--accent);
+}
+
+.log-btn:hover {
+  background-color: var(--color-white);
+  transition: all 0.5s ease;
+  color: var(--accent);
+}
+.log-btn:hover > .btn-log {
+  color: var(--color-background);
+  transition: all 0.5s ease;
+}
+
+.sign-btn {
+  background-color: var(--secondary);
+  color: var(--color-background);
+  transition: all 0.5s ease;
+  border: 2px solid var(--secondary);
+}
+
+.sign-btn:hover {
+  background-color: var(--color-background);
+  transition: all 0.5s ease;
+  border: 2px solid var(--accent);
+}
+
+.sign-btn:hover > .btn-sign {
+  color: var(--accent);
+}
+
+@media (max-width: 1160px) {
+  .nav {
+    position: relative;
+  }
+
+  .MyLogo {
+    display: none;
+  }
+
+  .app-name {
+    font-size: var(--font-size-huge);
+  }
+
+  .nav-cta {
+    display: none;
+  }
+}
