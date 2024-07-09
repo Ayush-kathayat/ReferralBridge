@@ -6,6 +6,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./signUp.css";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "./firebase";
+import { setDoc, doc } from "firebase/firestore";
 
 // import { register as registerAPI } from "..//..//utils/api/api"; //! there was a naming conflict
 
@@ -22,7 +25,26 @@ const SignUP = () => {
   } = useForm({});
 
   const onSubmit = async (data) => {
-    console.log(data);
+
+    try{
+      await createUserWithEmailAndPassword(auth, data.username, data.password);
+      const user = auth.currentUser;
+      console.log(user);
+
+      if(user){
+        await setDoc(doc(db, "Users", user.uid), { 
+          email : user.email,
+          username : data.name,
+        });
+      }
+      console.log("User created successfully");
+    }catch(error){
+      console.log(error.message);
+    }
+
+
+    console.log(data.username);
+    console.log(data.password);
 
     reset();
   };
@@ -73,8 +95,8 @@ const SignUP = () => {
                 {...register("password", {
                   required: "Password is required",
                   minLength: {
-                    value: 4,
-                    message: "Password must be at least 4 characters",
+                    value: 6,
+                    message: "Password must be at least 6 characters",
                   },
                 })}
                 onChange={() => setActiveInputPassword(true)}
