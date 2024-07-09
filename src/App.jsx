@@ -9,16 +9,21 @@ import HomePage from "./pages/homePage";
 import SignUP from "./auth/signUp";
 import Login from "./auth/login";
 
+//! Auth provider
+import { AuthProvider } from "./auth/authContext";
+
 function App() {
   return (
     <>
       <Router>
-        <Routes>
-          <Route path="/" element={<LandingPage />}></Route>
-          <Route path="/home" element={<HomePage />}></Route>
-          <Route path="/signup" element={<SignUP />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<LandingPage />}></Route>
+            <Route path="/home" element={<HomePage />}></Route>
+            <Route path="/signup" element={<SignUP />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+          </Routes>
+        </AuthProvider>
       </Router>
     </>
   );
