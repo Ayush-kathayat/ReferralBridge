@@ -1,9 +1,6 @@
 .register {
   display: flex;
-  background-image: url("/background-auth.svg");
-  background-repeat: no-repeat; /* Prevent repeating */
-  background-size: cover; /* Adjust the size */
-  background-position: center; /* Center the background */
+
 }
 .register-right {
   width: 50%;
@@ -22,7 +19,7 @@
 
 .form-wrapper {
   display: flex;
-  background-color: var(--secondary);
+  background-color: var(--primary);
   align-items: center;
   justify-content: center;
   border-radius: 25px;
@@ -71,7 +68,7 @@
 .form-title {
   font-size: var(--font-size-mammoth);
   color: var(--text);
-  font-family: var(--heading-font);
+  font-family: var(--form-font);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 3rem;
@@ -119,15 +116,16 @@
 }
 
 .input-pass {
-  width: 88%;
+  width: 85%;
+  height: 50px;
   margin-right: 6rem;
 }
 
 .eye-icon {
   cursor: pointer;
   position: absolute;
-  top: 40px; /* Adjust as needed */
-  right: 45px; /* Adjust as needed */
+  top: 50px; /* Adjust as needed */
+  right: 55px; /* Adjust as needed */
 }
 
 .submit-btn {

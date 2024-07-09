@@ -1,0 +1,23 @@
+.titles{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 10%;
+}
+
+.hero-title{
+  font-size: var(--font-size-xxmammoth);
+  font-family: var(--cta-font);
+  color: var(--accent);
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.hero-subtitle{
+  font-size: var(--font-size-xlarge);
+  font-family: var(--cta-font);
+  color: var(--text);
+}
