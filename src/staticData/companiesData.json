@@ -1,0 +1,44 @@
+{
+  "companies": [
+    {
+      "name": "Google",
+      "industry": "Technology"
+    },
+    {
+      "name": "Amazon",
+      "industry": "E-commerce, Cloud Computing"
+    },
+    {
+      "name": "Tesla",
+      "industry": "Automotive, Energy"
+    },
+    {
+      "name": "Facebook",
+      "industry": "Social Media, Technology"
+    },
+    {
+      "name": "Apple",
+      "industry": "Technology, Consumer Electronics"
+    },
+    {
+      "name": "Netflix",
+      "industry": "Entertainment, Streaming Services"
+    },
+    {
+      "name": "Microsoft",
+      "industry": "Technology, Software"
+    },
+    {
+      "name": "Pfizer",
+      "industry": "Pharmaceuticals, Biotechnology"
+    },
+    {
+      "name": "Goldman Sachs",
+      "industry": "Finance, Investment Banking"
+    },
+    {
+      "name": "Walmart",
+      "industry": "Retail, E-commerce"
+    }
+  ]
+}

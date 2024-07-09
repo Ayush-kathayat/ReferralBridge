@@ -1,32 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import Header from "../components/header";
 import "./landingPage.css";
 
-import { useNavigate } from "react-router-dom";
-
-
-import { AuthContext } from "../auth/authContext";
-import { useContext } from "react";
-
 const LandingPage = () => {
-
-  const context = useContext(AuthContext);
-
-  const { currentUser } = context;
-
   const navigate = useNavigate();
 
+  const handleRoute = () => {
+    navigate("/home");
+  };
 
-  const handleProtectedRoute = () => {
-
-    if(!currentUser){
-      navigate("/login");
-    }
-    else{
-      navigate("/home");
-    }
-
-  }
-    
   return (
     <>
       <Header />
@@ -36,7 +18,10 @@ const LandingPage = () => {
           Find Job Opportunities and Services with Ease!
         </h3>
 
-        <button onClick={handleProtectedRoute}className="home-cta btn"> Go to Home</button>
+        <button onClick={handleRoute} className="home-cta btn">
+          {" "}
+          Go to Home
+        </button>
       </div>
     </>
   );

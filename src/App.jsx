@@ -12,16 +12,26 @@ import Login from "./auth/login";
 //! Auth provider
 import { AuthProvider } from "./auth/authContext";
 
+//! importing protected routes
+import ProtectedRoute from "./utils/protectedRoutes";
+
 function App() {
   return (
     <>
       <Router>
         <AuthProvider>
           <Routes>
-            <Route path="/" element={<LandingPage />}></Route>
-            <Route path="/home" element={<HomePage />}></Route>
-            <Route path="/signup" element={<SignUP />}></Route>
-            <Route path="/login" element={<Login />}></Route>
+            <Route path="/" element={<LandingPage />} />
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <HomePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/signup" element={<SignUP />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </AuthProvider>
       </Router>
