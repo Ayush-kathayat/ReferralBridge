@@ -1,13 +1,12 @@
 .register {
   display: flex;
-
 }
 .register-right {
   width: 50%;
   height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .register-left {
@@ -23,12 +22,16 @@
   align-items: center;
   justify-content: center;
   border-radius: 25px;
-  height: 90vh;
+  height:75vh;
   width: 65%;
   margin: 1.5rem;
   box-shadow: 0 12px 24px var(--background);
 }
 
+.lts{
+  margin: 2.5rem;
+
+}
 .form {
   display: flex;
   flex-direction: column;

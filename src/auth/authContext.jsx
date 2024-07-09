@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }) => {
           username: data.name,
         });
       }
+      navigate("/login");
       console.log("User created successfully");
     } catch (error) {
       console.log(error.message);

@@ -21,3 +21,11 @@
   font-family: var(--cta-font);
   color: var(--text);
 }
+
+.home-cta , {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}

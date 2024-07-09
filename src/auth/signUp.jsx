@@ -40,6 +40,11 @@ const SignUP = () => {
       <div className="register-left"></div>
 
       <div className="register-right">
+      <div className="logo-title lts">
+          <Link to="/">
+            <h1 className="app-name">ReferralBridge.</h1>
+          </Link>
+        </div>
         <div className="form-wrapper">
           <form noValidate className="form" onSubmit={handleSubmit(onSubmit)}>
             <h2 className="form-title">SIGN-UP</h2>

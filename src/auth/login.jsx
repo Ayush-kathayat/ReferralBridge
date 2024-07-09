@@ -34,6 +34,11 @@ const Login = () => {
     <>
       <div className="login">
         <div className="login-left">
+        <div className="logo-title ltl">
+          <Link to="/">
+            <h1 className="app-name">ReferralBridge.</h1>
+          </Link>
+        </div>
           <form
             noValidate
             className="login-form"
