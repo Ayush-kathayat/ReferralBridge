@@ -2,8 +2,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-
-
 // importing loader
 import { LineWave } from "react-loader-spinner";
 
@@ -11,22 +9,33 @@ import { Link } from "react-router-dom";
 
 import "./login.css";
 
+//! firebase imports
+import { auth } from "../auth/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [activeInputPassword, setActiveInputPassword] = useState(false);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm({
-  });
+  } = useForm({});
 
-  const onSubmit = async () => {
-   
+  const onSubmit = async (data) => {
+    try {
+      await signInWithEmailAndPassword(auth, data.username, data.password);
+      console.log("User logged in successfully");
+      navigate("/home");
+    } catch (error) {
+      console.log(error);
+    }
+
+    reset();
   };
 
   return (
