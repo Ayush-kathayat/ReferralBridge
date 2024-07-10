@@ -6,8 +6,8 @@ import "./App.css";
 import LandingPage from "./pages/landingPage";
 import HomePage from "./pages/homePage";
 
-import SignUP from "./auth/signUp";
-import Login from "./auth/login";
+import SignUP from "./auth/Signup/signUp";
+import Login from "./auth/Login/login";
 
 //! Auth provider
 import { AuthProvider } from "./auth/authContext";

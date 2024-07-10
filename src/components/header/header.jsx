@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 //! importing Auth Context
-import { AuthContext } from "../auth/authContext";
+import { AuthContext } from "../../auth/authContext";
 
 import "./header.css";
 

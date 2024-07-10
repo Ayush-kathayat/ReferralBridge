@@ -1,55 +1,71 @@
 import { useForm } from "react-hook-form";
-import { useContext, useState } from "react";
 
-// importing loader
 import { LineWave } from "react-loader-spinner";
+import { useContext, useState } from "react";
 
 import { Link } from "react-router-dom";
 
-import "./login.css";
+import "./signUp.css";
 
-//! Auth context import
-import { AuthContext } from "./authContext";
+//! importing context
+import { AuthContext } from "../authContext";
 
-const Login = () => {
+// import { register as registerAPI } from "..//..//utils/api/api"; //! there was a naming conflict
+
+const SignUP = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [activeInputPassword, setActiveInputPassword] = useState(false);
 
   const {
     register,
     handleSubmit,
+
     formState: { errors, isSubmitting },
     reset,
   } = useForm({});
 
+  //! consuming the context
+
   const context = useContext(AuthContext);
-  const { login , currentUser } = context;
+
+  const { signup } = context;
 
   const onSubmit = async (data) => {
-    login(data);
+    signup(data);
     reset();
   };
 
   return (
-    <>
-      <div className="login">
-        <div className="login-left">
-        <div className="logo-title ltl">
+    <div className="register">
+      <div className="register-left"></div>
+
+      <div className="register-right">
+      <div className="logo-title lts">
           <Link to="/">
             <h1 className="app-name">ReferralBridge.</h1>
           </Link>
         </div>
-          <form
-            noValidate
-            className="login-form"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            {/* Your input fields and submit button */}
-            <h2 className="form-title">LOGIN</h2>
+        <div className="form-wrapper">
+          <form noValidate className="form" onSubmit={handleSubmit(onSubmit)}>
+            <h2 className="form-title">SIGN-UP</h2>
             <input
-              className="login-input-email"
+              className="input input-name"
+              type="text"
+              placeholder="Username"
+              {...register("name", {
+                required: "Username is required",
+                minLength: {
+                  value: 3,
+                  message: "Name must be at least 3 characters",
+                },
+              })}
+            />
+            {errors.name && (
+              <p className="form-errors">{errors.name.message}</p>
+            )}
+            <input
+              className="input input-email"
               type="email"
-              id="email"
               placeholder="Email"
               {...register("username", {
                 required: "Email is required",
@@ -67,7 +83,13 @@ const Login = () => {
                 className="input input-pass"
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                {...register("password")}
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters",
+                  },
+                })}
                 onChange={() => setActiveInputPassword(true)}
               />
 
@@ -88,6 +110,7 @@ const Login = () => {
                   />
                 ))}
             </div>
+
             {errors.password && (
               <p className="form-errors">{errors.password.message}</p>
             )}
@@ -106,22 +129,22 @@ const Login = () => {
               />
             ) : (
               <button
-                className="login-btn"
+                className="btn submit-btn "
                 type="submit"
                 disabled={isSubmitting}
               >
-                Login
+                Register
               </button>
             )}
-            <Link to="/signup" className="auth-link">
-              <p>Don't have an account?</p>
+
+            <Link to="/login" className="auth-link">
+              <p>Already have an account?</p>
             </Link>
           </form>
         </div>
-        <div className="login-right"></div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default Login;
+export default SignUP;

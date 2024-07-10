@@ -1,4 +1,4 @@
-import SearchComponent from "./Search";
+import SearchComponent from "./search/Search";
 
 const Referral = () => {
   return (
