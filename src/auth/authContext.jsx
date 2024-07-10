@@ -1,6 +1,6 @@
 // AuthContext.jsx
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 //! firebase imports
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -56,6 +56,8 @@ export const AuthProvider = ({ children }) => {
 
   const [currentUser, setCurrentUser] = useState(null);
 
+  const location = useLocation();
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -71,7 +73,7 @@ export const AuthProvider = ({ children }) => {
     });
 
     return () => unsubscribe();
-  }, []); 
+  }, [location.pathname]); 
 
 
   //! Logging out the Current USER

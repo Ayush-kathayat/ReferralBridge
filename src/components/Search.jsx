@@ -2,25 +2,36 @@ import { useState, useEffect } from "react";
 import "./search.css";
 
 import companiesData from "../staticData/companiesData.json";
+import CompanyCard from "./card/companyCard";
+import ReferralCard from "./card/referralCard";
+import ServiceCard from "./card/servicesCard";
 
-import CompanyCard from "./companyCard";
-const SearchComponent = () => {
-  const [data, setData] = useState(companiesData.companies);
+const SearchComponent = ({ placeholder, apiUrl, dataType }) => {
+  const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredData, setFilteredData] = useState(companiesData.companies);
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    // Fetch the JSON data when the component mounts
-    fetch("companiesData.json")
-      .then((response) => response.json())
-      .then((jsonData) => {
-        setData(jsonData.companies); // Assuming the JSON structure you provided
-        setFilteredData(jsonData.companies); // Initially display all data
-      });
-  }, []);
+    if (apiUrl && dataType !== "static") {
+      // Fetch the data from the provided API URL if dataType is not "static"
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((jsonData) => {
+          const dataToSet =
+            dataType === "referral" ? jsonData.referrals : jsonData.services;
+          setData(dataToSet);
+          setFilteredData(dataToSet);
+        })
+        .catch((error) => console.error("Failed to fetch data:", error));
+    } else {
+      // Use static data if no API URL is provided or dataType is "static"
+      setData(companiesData.companies);
+      setFilteredData(companiesData.companies);
+    }
+  }, [apiUrl, dataType]);
 
   useEffect(() => {
-    // Filter data based on search query, considering both name and industry
+    // Filter data based on search query
     const filtered = data.filter(
       (item) =>
         item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -30,24 +41,36 @@ const SearchComponent = () => {
     setFilteredData(filtered);
   }, [searchQuery, data]);
 
+  const renderCard = (item, index) => {
+    switch (dataType) {
+      case "referral":
+        return <ReferralCard key={index} referral={item} />;
+      case "service":
+        return <ServiceCard key={index} service={item} />;
+      case "static":
+      default:
+        return <CompanyCard key={index} company={item} />;
+    }
+  };
+
   return (
     <div className="search-container">
       <div className="search-bar-container">
         <input
           className="search-bar"
           type="text"
-          placeholder="Search by name or industry..."
+          placeholder={placeholder}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
       <div className="search-results">
-      {filteredData.length > 0 ? (
-          filteredData.map((item, index) => (
-            <CompanyCard key={index} company={item} />
-          ))
+        {filteredData.length > 0 ? (
+          filteredData.map(renderCard)
         ) : (
-          <p className="no-search-results">No companies found matching your search criteria.</p>
+          <p className="no-search-results">
+            No companies found matching your search criteria.
+          </p>
         )}
       </div>
     </div>

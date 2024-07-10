@@ -1,0 +1,15 @@
+.links-container{
+  display : flex;
+  justify-content : center;
+  align-items : center;
+  margin : 4rem;
+}
+
+.links-container > .btn{
+  margin : 1rem;
+}
+
+.componenet-wrapper{
+  height : 100vh;
+  width : auto; 
+}

@@ -23,7 +23,7 @@ const Login = () => {
   } = useForm({});
 
   const context = useContext(AuthContext);
-  const { login } = context;
+  const { login , currentUser } = context;
 
   const onSubmit = async (data) => {
     login(data);

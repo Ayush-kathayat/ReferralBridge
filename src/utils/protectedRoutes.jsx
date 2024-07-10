@@ -1,21 +1,46 @@
-import { useContext } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
-import { AuthContext } from '../auth/authContext';
+import { useState, useEffect } from "react";
+import { Navigate, useLocation } from "react-router-dom";
+import { auth, db } from "../auth/firebase";
+import { getDoc, doc } from "firebase/firestore";
 
 const ProtectedRoute = ({ children }) => {
-  const { currentUser } = useContext(AuthContext);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        try {
+          const userRef = doc(db, "Users", user.uid);
+          const userSnap = await getDoc(userRef);
+
+          if (userSnap.exists()) {
+            setCurrentUser(userSnap.data());
+          } else {
+            console.log("User not found");
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      } else {
+        setCurrentUser(null);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, [location]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   if (!currentUser) {
-    // Redirect them to the /login page, but save the current location they were
-    // trying to go to when they were redirected. This allows us to send them
-    // along to that page after they log in, which is a nicer user experience
-    // than dropping them off on the home page.
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ from: location }} />;
   }
 
   return children;
 };
-
 
 export default ProtectedRoute;
