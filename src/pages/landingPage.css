@@ -1,3 +1,31 @@
+.landing-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.landing-up{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 35vh;
+  width: 100%;
+}
+
+.landing-down{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 55vh;
+  width: 100%;
+
+}
+
 .titles{
   display: flex;
   flex-direction: column;
@@ -5,7 +33,6 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  margin-top: 10%;
 }
 
 .hero-title{

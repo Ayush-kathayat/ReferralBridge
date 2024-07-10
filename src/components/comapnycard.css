@@ -1,0 +1,27 @@
+.company-card {
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem;
+  background-color: var(--background);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: 0.2s ease-in-out;
+}
+
+.company-card:hover {
+  background-color: var(--primary);
+  transition:  0.2s ease-in-out;
+}
+
+.company-card h2 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: var(--font-size-xhuge);
+  font-family: var(--cta-font);
+}
+
+.company-card p {
+  color: var(--text);
+  margin: 10px 0 0;
+  font-size: var(--font-size-large);
+  font-family: var(--secondary-font);
+}

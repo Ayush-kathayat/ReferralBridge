@@ -1,44 +1,64 @@
 {
   "companies": [
     {
+      "id": 1,
       "name": "Google",
+      "description": "A global technology leader focused on search engine services, online advertising, cloud computing, and software.",
       "industry": "Technology"
     },
     {
+      "id": 2,
       "name": "Amazon",
-      "industry": "E-commerce, Cloud Computing"
+      "description": "An e-commerce giant that also provides cloud computing services, digital streaming, and artificial intelligence.",
+      "industry": "E-commerce"
     },
     {
+      "id": 3,
       "name": "Tesla",
-      "industry": "Automotive, Energy"
+      "description": "An automotive and energy company known for its electric vehicles, battery energy storage, and solar products.",
+      "industry": "Automotive"
     },
     {
+      "id": 4,
       "name": "Facebook",
-      "industry": "Social Media, Technology"
+      "description": "A social media conglomerate offering platforms for social networking, digital communication, and virtual reality.",
+      "industry": "Social Media"
     },
     {
+      "id": 5,
       "name": "Apple",
-      "industry": "Technology, Consumer Electronics"
+      "description": "A technology company specializing in consumer electronics, software, and online services, known for its iPhone, iPad, and Mac products.",
+      "industry": "Technology"
     },
     {
+      "id": 6,
       "name": "Netflix",
-      "industry": "Entertainment, Streaming Services"
+      "description": "A streaming service offering a wide variety of TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
+      "industry": "Entertainment"
     },
     {
+      "id": 7,
       "name": "Microsoft",
-      "industry": "Technology, Software"
+      "description": "A multinational technology company that develops, manufactures, licenses, supports, and sells computer software, consumer electronics, and personal computers.",
+      "industry": "Technology"
     },
     {
+      "id": 8,
       "name": "Pfizer",
-      "industry": "Pharmaceuticals, Biotechnology"
+      "description": "A global pharmaceutical corporation which develops and produces medicines and vaccines for a wide range of medical disciplines.",
+      "industry": "Pharmaceutical"
     },
     {
+      "id": 9,
       "name": "Goldman Sachs",
-      "industry": "Finance, Investment Banking"
+      "description": "An investment banking, securities, and investment management firm that offers services to corporations, financial institutions, governments, and individuals.",
+      "industry": "Finance"
     },
     {
+      "id": 10,
       "name": "Walmart",
-      "industry": "Retail, E-commerce"
+      "description": "The world's largest retailer, operating a chain of hypermarkets, discount department stores, and grocery stores.",
+      "industry": "Retail"
     }
   ]
 }

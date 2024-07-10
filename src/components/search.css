@@ -1,0 +1,53 @@
+/* Container for the search bar to keep it stationary */
+.search-bar-container {
+  display: flex;
+  justify-content: center; /* Center the search bar */
+  padding: 1rem; /* Add some padding around the search bar */
+  margin-bottom : 2rem;
+ 
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  justify-content: flex-start; /* Align children to the start */
+  width: 75%;
+  position: relative;
+  padding: 1rem; /* Add some padding around the search bar */
+  height : 100%;
+
+}
+
+.search-bar {
+  width: 45%;
+  height: 3.8rem;
+  background-color: var(--primary);
+  outline: none;
+  border: 1px solid var(--background);
+  border-radius: 50px;
+  color: var(--text);
+  font-size: var(--font-size-xlarge);
+  padding-left: 1.3rem;
+  font-family: var(--secondary-font);
+
+}
+
+.search-results {
+  display: block;
+  flex-direction: column; 
+  align-items: center; 
+  width: 50%;
+  height: 400px; 
+  overflow: auto; 
+  margin: 0 auto; 
+  background-color: var(--primary); 
+  padding : 2rem;
+  border-radius: 25px;
+}
+
+.no-search-results{
+  color: var(--text);
+  font-size: var(--font-size-mammoth);
+  font-family: var(--secondary-font);
+  text-align: center;
+}
