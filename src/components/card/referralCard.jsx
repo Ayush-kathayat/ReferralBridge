@@ -1,10 +1,19 @@
-
 import "./referralCard.css";
 const ReferralCard = ({ referral }) => {
   return (
-    <div className="card">
-      <h3>{referral.name}</h3>
-      <p>{referral.description}</p>
+    <div className="referral-card">
+      <h2>
+        <strong>Title : </strong>
+        {referral.title}
+      </h2>
+      <h3>
+        <strong>Category : </strong>
+        {referral.category}
+      </h3>
+      <p>
+        <strong>Description : </strong>
+        {referral.description}
+      </p>
     </div>
   );
 };

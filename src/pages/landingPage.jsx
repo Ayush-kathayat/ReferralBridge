@@ -30,7 +30,7 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="landing-down">
-          <SearchComponent placeholder={"Search by Companies or Industry...."}/>
+          <SearchComponent placeholder={"Search by Companies or Industry...."} dataType={"static"}/>
         </div>
       </div>
     </>

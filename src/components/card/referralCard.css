@@ -1,0 +1,43 @@
+
+.referral-card {
+  flex: 0 1 350px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+  background-color: var(--primary);
+  padding: 20px; 
+  border-radius: 8px; 
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+.referral-card h2 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: var(--font-size-xlarge);
+  font-family: var(--cta-font);
+}
+
+.referral-card h3{
+  color: var(--text);
+  margin: 10px 0 0;
+  font-size: var(--font-size-large);
+  font-family: var(--cta-font);
+  font-weight: bold;
+
+}
+
+.referral-card p {
+  color: var(--text);
+  margin: 10px 0 0;
+  font-size: var(--font-size-medium);
+  font-family: var(--secondary-font);
+}
+
+.referral-card p > strong , h3 > strong{
+  color: var(--accent);
+  font-weight: bolder;
+
+}

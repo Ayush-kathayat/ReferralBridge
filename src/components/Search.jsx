@@ -17,8 +17,7 @@ const SearchComponent = ({ placeholder, apiUrl, dataType }) => {
       fetch(apiUrl)
         .then((response) => response.json())
         .then((jsonData) => {
-          const dataToSet =
-            dataType === "referral" ? jsonData.referrals : jsonData.services;
+          const dataToSet = jsonData.products;
           setData(dataToSet);
           setFilteredData(dataToSet);
         })
@@ -32,20 +31,42 @@ const SearchComponent = ({ placeholder, apiUrl, dataType }) => {
 
   useEffect(() => {
     // Filter data based on search query
-    const filtered = data.filter(
-      (item) =>
-        item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (item.industry &&
-          item.industry.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
-    setFilteredData(filtered);
+    if (apiUrl && dataType == "referral") {
+      const filtered = data.filter(
+        (item) =>
+          item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (item.category &&
+            item.category.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+      setFilteredData(filtered);
+    } else if (apiUrl && dataType == "services") {
+      const filtered = data.filter(
+        (item) =>
+          item.id
+            .toString()
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          (item.brand &&
+            item.brand.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+      setFilteredData(filtered);
+    } else {
+      //! filtering the static data only
+      const filtered = data.filter(
+        (item) =>
+          item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (item.industry &&
+            item.industry.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+      setFilteredData(filtered);
+    }
   }, [searchQuery, data]);
 
   const renderCard = (item, index) => {
     switch (dataType) {
       case "referral":
         return <ReferralCard key={index} referral={item} />;
-      case "service":
+      case "services":
         return <ServiceCard key={index} service={item} />;
       case "static":
       default:
@@ -54,26 +75,51 @@ const SearchComponent = ({ placeholder, apiUrl, dataType }) => {
   };
 
   return (
-    <div className="search-container">
-      <div className="search-bar-container">
-        <input
-          className="search-bar"
-          type="text"
-          placeholder={placeholder}
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
-      <div className="search-results">
-        {filteredData.length > 0 ? (
-          filteredData.map(renderCard)
-        ) : (
-          <p className="no-search-results">
-            No companies found matching your search criteria.
-          </p>
-        )}
-      </div>
-    </div>
+    <>
+      {dataType === "static" ? (
+        <div className="search-container">
+          <div className="search-bar-container">
+            <input
+              className="search-bar"
+              type="text"
+              placeholder={placeholder}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          <div className="search-results">
+            {filteredData.length > 0 ? (
+              filteredData.map(renderCard)
+            ) : (
+              <p className="no-search-results">
+                No companies found matching your search criteria.
+              </p>
+            )}
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className="search-bar-container">
+            <input
+              className="search-bar"
+              type="text"
+              placeholder={placeholder}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          <div className="home-card-container">
+            {filteredData.length > 0 ? (
+              filteredData.map(renderCard)
+            ) : (
+              <p className="no-search-results">
+                No companies found matching your search criteria.
+              </p>
+            )}
+          </div>
+        </>
+      )}
+    </>
   );
 };
 
