@@ -2,8 +2,11 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/header/header";
 import "./landingPage.css";
 
-
 import SearchComponent from "../components/search/Search";
+
+import { ToastContainer } from "react-toastify";
+import { Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -30,9 +33,25 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="landing-down">
-          <SearchComponent placeholder={"Search by Companies or Industry...."} dataType={"static"}/>
+          <SearchComponent
+            placeholder={"Search by Companies or Industry...."}
+            dataType={"static"}
+          />
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={false}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Bounce}
+      />
     </>
   );
 };

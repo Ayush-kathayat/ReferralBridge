@@ -2,19 +2,47 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
+//! toastify imports
+import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 //! firebase imports
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "./firebase";
 import { setDoc, getDoc, doc } from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-
   const navigate = useNavigate();
 
+  const notifySuccess = (message) =>
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+
+  const notifyError = (message) =>
+    toast.error(message, {
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
 
   //! SIGNUP
   const signup = async (data) => {
@@ -29,9 +57,15 @@ export const AuthProvider = ({ children }) => {
           username: data.name,
         });
       }
-      navigate("/login");
+      notifySuccess("Registration Successfull");
+
+      // Delay the navigation by 2.5 seconds to allow the toast to be displayed
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
       console.log("User created successfully");
     } catch (error) {
+      notifyError("Registration Failed");
       console.log(error.message);
     }
 
@@ -39,18 +73,21 @@ export const AuthProvider = ({ children }) => {
     console.log(data.password);
   };
 
-
   //! LOGIN
   const login = async (data) => {
-
     try {
       await signInWithEmailAndPassword(auth, data.username, data.password);
       console.log("User logged in successfully");
-      navigate("/home");
+      notifySuccess("Login Successfull");
+      // Delay the navigation by 2.5 seconds to allow the toast to be displayed
+      setTimeout(() => {
+        navigate("/home");
+      }, 1500);
     } catch (error) {
+      notifyError("Login Failed");
       console.log(error);
     }
-  }
+  };
 
   //! Fetching Current user details
 
@@ -73,25 +110,28 @@ export const AuthProvider = ({ children }) => {
     });
 
     return () => unsubscribe();
-  }, [location.pathname]); 
-
+  }, [location.pathname]);
 
   //! Logging out the Current USER
 
   const logout = async () => {
-
     try {
       await auth.signOut();
       setCurrentUser(null);
+      notifySuccess("User logged out Successfully");
       console.log(" User logged out Successfully");
-      navigate("/");
+      // Delay the navigation by 2.5 seconds to allow the toast to be displayed
+      setTimeout(() => {
+        navigate("/login");
+      }, 2500);
     } catch (error) {
       console.log(error);
     }
-  }
-
+  };
 
   return (
-    <AuthContext.Provider value={{ signup , login, logout, currentUser }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ signup, login, logout, currentUser }}>
+      {children}
+    </AuthContext.Provider>
   );
 };

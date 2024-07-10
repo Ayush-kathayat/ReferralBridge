@@ -4,6 +4,10 @@ import { useContext, useState } from "react";
 // importing loader
 import { LineWave } from "react-loader-spinner";
 
+import { ToastContainer } from "react-toastify";
+import { Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { Link } from "react-router-dom";
 
 import "./login.css";
@@ -23,7 +27,7 @@ const Login = () => {
   } = useForm({});
 
   const context = useContext(AuthContext);
-  const { login , currentUser } = context;
+  const { login, currentUser } = context;
 
   const onSubmit = async (data) => {
     login(data);
@@ -34,11 +38,11 @@ const Login = () => {
     <>
       <div className="login">
         <div className="login-left">
-        <div className="logo-title ltl">
-          <Link to="/">
-            <h1 className="app-name">ReferralBridge.</h1>
-          </Link>
-        </div>
+          <div className="logo-title ltl">
+            <Link to="/">
+              <h1 className="app-name">ReferralBridge.</h1>
+            </Link>
+          </div>
           <form
             noValidate
             className="login-form"
@@ -120,6 +124,19 @@ const Login = () => {
         </div>
         <div className="login-right"></div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={false}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Bounce}
+      />
     </>
   );
 };

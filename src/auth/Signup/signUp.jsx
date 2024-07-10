@@ -5,6 +5,10 @@ import { useContext, useState } from "react";
 
 import { Link } from "react-router-dom";
 
+import { ToastContainer } from "react-toastify";
+import { Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./signUp.css";
 
 //! importing context
@@ -40,7 +44,7 @@ const SignUP = () => {
       <div className="register-left"></div>
 
       <div className="register-right">
-      <div className="logo-title lts">
+        <div className="logo-title lts">
           <Link to="/">
             <h1 className="app-name">ReferralBridge.</h1>
           </Link>
@@ -143,6 +147,19 @@ const SignUP = () => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={false}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Bounce}
+      />
     </div>
   );
 };
